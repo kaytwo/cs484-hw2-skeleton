@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { TodoForm, TodoList } from './components/Todo'
 import Nav from './components/Navbar'
+import RequestChart from "./components/Chart";
 import {
   Routes,
   Route
@@ -57,6 +58,7 @@ function App() {
           <TodoList completeTodo={completeTodo} removeTodo={removeTodo} todos={todos} />
         } />
         <Route path="/add" element={<TodoForm addTodo={addTodo} />} />
+        <Route path="/chart" element={<RequestChart todos={todos}/>} />
         {/* add chart */}
       </Routes>
     </>
