@@ -2,34 +2,50 @@ import React from 'react'
 
 function RequestList({ requests, completeRequest, removeRequest }) {
   return (
-    <div className="request-list">
-      {requests.map((request, index) => (
-        <Request
-          key={index}
-          index={index}
-          request={request}
-          completeRequest={completeRequest}
-          removeRequest={removeRequest}
-        />
-      ))}
+    <div className="list-container" >
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"> </th>
+            <th scope="col">Name</th>
+            <th scope="col">Short Description</th>
+            <th scope="col">Email Id</th>
+            <th scope="col">Long Description</th>
+            <th scope="col">Complete a Request</th>
+          </tr>
+        </thead>
+        <tbody id="main-table-body">
+          {requests.map((request, index) => (
+            <Request
+              key={index}
+              index={index}
+              request={request}
+              completeRequest={completeRequest}
+              removeRequest={removeRequest}
+            />
+          ))}
+        </tbody>
+      </table>
+
     </div>
   )
 }
 
 function Request({ request, index, completeRequest, removeRequest }) {
   return (
-    <div
+    <tr
       className="request"
       style={{ textDecoration: request.isCompleted ? "line-through" : "" }}
     >
-      {request.name || "no name"}
-      Placeholder text
-      {/*      {request.text} */}
-      <div>
-        <button onClick={() => completeRequest(index)}>Complete</button>
-        <button onClick={() => removeRequest(index)}>x</button>
-      </div>
-    </div>
+      <td><button onClick={() => removeRequest(index)}
+        className="btn-close" aria-label="cancel" type="button" ></button></td>
+      <td>{request.name}</td>
+      <td>{request.sdescription}</td>
+      <td>{request.emailId}</td>
+      <td>{request.ldescription}</td>
+      <td><button onClick={() => completeRequest(index)}
+        className="btn-primary btn" aria-label="complete" type="button" >Complete</button></td>
+    </tr>
   );
 }
 
@@ -38,7 +54,6 @@ function AddRequestForm({ addRequest }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(value)
     if (!value) return;
     addRequest(value);
     setValue({});

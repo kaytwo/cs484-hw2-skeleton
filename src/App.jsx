@@ -10,25 +10,31 @@ import {
 
 function Landing() {
   return (
-  <>
-    Welcome to our awesome 311 app.
-  </>
+    <>
+      Welcome to our awesome 311 app.
+    </>
   )
 }
 
 function App() {
   const [requests, setRequests] = React.useState([
     {
-      text: "Learn about React",
-      isCompleted: false
+      emailId: "chris@nolights.here",
+      ldescription: "The lights on my block are all out. Please fix them.",
+      name: "Chris",
+      sdescription: "light out"
     },
     {
-      text: "Meet friend for lunch",
-      isCompleted: false
+      emailId: "tejas@needs.trashcans",
+      ldescription: "Please give me some trash cans.",
+      name: "Tejas",
+      sdescription: "no garbage cans"
     },
     {
-      text: "Build really cool todo app",
-      isCompleted: false
+      emailId: "i@need.sleep",
+      ldescription: "My neighbors are jackhammering all day and all night. Please make them stop.",
+      name: "Tired",
+      sdescription: "neighbors make too much noise"
     }
   ]);
 
@@ -58,7 +64,7 @@ function App() {
           <RequestList completeRequest={completeRequest} removeRequest={removeRequest} requests={requests} />
         } />
         <Route path="/add" element={<AddRequestForm addRequest={addRequest} />} />
-        <Route path="/chart" element={<RequestChart requests={requests}/>} />
+        <Route path="/chart" element={<RequestChart requests={requests} />} />
         {/* add chart */}
       </Routes>
     </>
