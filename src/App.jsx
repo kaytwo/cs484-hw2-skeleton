@@ -32,8 +32,8 @@ function App() {
     }
   ]);
 
-  const addRequest = text => {
-    const newRequests = [...requests, { text }];
+  const addRequest = (element) => {
+    const newRequests = [...requests, element];
     setRequests(newRequests);
   };
 
