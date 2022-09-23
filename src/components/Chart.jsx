@@ -2,13 +2,9 @@ import React from 'react'
 import { TagCloud } from 'react-tagcloud'
 
 
-function RequestChart({ requests }) {
-  const allwords = requests.map(elt => elt.ldescription).join(" ")
-  const wordfreqs = allwords.split(/\s+/).reduce(function (map, word) {
-    map[word] = (map[word] || 0) + 1;
-    return map;
-  }, Object.create(null));
-  const wordFreqArray = Object.entries(wordfreqs).map(elt => ({ value: elt[0], count: elt[1] }))
+function RequestChart() {
+  // TODO: make wordFreqArray represent the sum of all words in all long descriptions within the request list.
+  const wordFreqArray = [{value: 'example',count:10}]
   return (
     <div className="form-contain">
       <TagCloud minSize={24}
