@@ -62,6 +62,11 @@ function AddRequestForm({ addRequest }) {
     document.getElementById('requestForm').reset();
   };
 
+  const resetForm = () => { 
+    setValue({});
+    document.getElementById('requestForm').reset();
+  }
+
   const handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -100,7 +105,8 @@ function AddRequestForm({ addRequest }) {
           <textarea className="form-control" name="ldescription" value={value.ldescription || ''}
           id="ldescription" rows="5" onChange={handleInputChange}></textarea>
         </div>
-        <button type="button" onClick={handleSubmit} className="btn btn-primary" id="create-req-btn">Create Request</button>
+        <button type="button" onClick={handleSubmit} className="btn btn-primary m-1" id="create-req-btn">Create Request</button>
+        <button type="button" onClick={resetForm} className="btn btn-danger m-1" id="reset-req-btn">Reset Form</button>
 
       </form>
     </div>
