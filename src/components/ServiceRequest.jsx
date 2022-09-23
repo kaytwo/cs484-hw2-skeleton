@@ -1,4 +1,6 @@
 import React from 'react'
+import {useSessionStorage} from 'react-use';
+
 
 function RequestList({ requests, completeRequest, removeRequest }) {
   return (
@@ -50,7 +52,7 @@ function Request({ request, index, completeRequest, removeRequest }) {
 }
 
 function AddRequestForm({ addRequest }) {
-  const [value, setValue] = React.useState({});
+  const [value, setValue] = useSessionStorage("form-data",{},false);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -80,19 +82,23 @@ function AddRequestForm({ addRequest }) {
       <form id="requestForm" className="login-form" onSubmit={handleSubmit}>
         <div className="form-outline mb-4">
           <label>Name</label>
-          <input id="name" name="name" className="form-control" placeholder="Enter Name" onChange={handleInputChange} />
+          <input id="name" name="name" className="form-control" 
+          placeholder="Enter Name" value={value.name || ''} onChange={handleInputChange} />
         </div>
         <div className="form-outline mb-4">
           <label>Short Description</label>
-          <input id="sdescription" name="sdescription" className="form-control" placeholder="Enter Short Description" onChange={handleInputChange} />
+          <input id="sdescription" name="sdescription" className="form-control" value={value.sdescription || ''}
+          placeholder="Enter Short Description" onChange={handleInputChange} />
         </div>
         <div className="form-outline mb-4">
           <label>Email Id</label>
-          <input id="emailId" name="emailId" className="form-control" placeholder="Enter Email ID" onChange={handleInputChange} />
+          <input id="emailId" name="emailId" className="form-control" value={value.emailId || ''}
+          placeholder="Enter Email ID" onChange={handleInputChange} />
         </div>
         <div className="form-group">
           <label htmlFor="textAreaForRequest">Service Request</label>
-          <textarea className="form-control" name="ldescription" id="ldescription" rows="5" onChange={handleInputChange}></textarea>
+          <textarea className="form-control" name="ldescription" value={value.ldescription || ''}
+          id="ldescription" rows="5" onChange={handleInputChange}></textarea>
         </div>
         <button type="button" onClick={handleSubmit} className="btn btn-primary" id="create-req-btn">Create Request</button>
 
