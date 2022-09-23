@@ -1,6 +1,6 @@
 import React from 'react'
 
-function RequestChart({ todos }) {
+function RequestChart({ requests }) {
   return (
     <>
     Chart goes here.

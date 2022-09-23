@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { TodoForm, TodoList } from './components/Todo'
+import { AddRequestForm, RequestList } from './components/ServiceRequest'
 import Nav from './components/Navbar'
 import RequestChart from "./components/Chart";
 import {
@@ -11,13 +11,13 @@ import {
 function Landing() {
   return (
   <>
-Welcome to our awesome 311 app.
+    Welcome to our awesome 311 app.
   </>
   )
 }
 
 function App() {
-  const [todos, setTodos] = React.useState([
+  const [requests, setRequests] = React.useState([
     {
       text: "Learn about React",
       isCompleted: false
@@ -32,21 +32,21 @@ function App() {
     }
   ]);
 
-  const addTodo = text => {
-    const newTodos = [...todos, { text }];
-    setTodos(newTodos);
+  const addRequest = text => {
+    const newRequests = [...requests, { text }];
+    setRequests(newRequests);
   };
 
-  const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
-    setTodos(newTodos);
+  const completeRequest = index => {
+    const newRequests = [...requests];
+    newRequests[index].isCompleted = true;
+    setRequests(newRequests);
   };
 
-  const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
+  const removeRequest = index => {
+    const newRequests = [...requests];
+    newRequests.splice(index, 1);
+    setRequests(newRequests);
   };
 
   return (
@@ -55,10 +55,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/list" element={
-          <TodoList completeTodo={completeTodo} removeTodo={removeTodo} todos={todos} />
+          <RequestList completeRequest={completeRequest} removeRequest={removeRequest} requests={requests} />
         } />
-        <Route path="/add" element={<TodoForm addTodo={addTodo} />} />
-        <Route path="/chart" element={<RequestChart todos={todos}/>} />
+        <Route path="/add" element={<AddRequestForm addRequest={addRequest} />} />
+        <Route path="/chart" element={<RequestChart requests={requests}/>} />
         {/* add chart */}
       </Routes>
     </>
